@@ -1,0 +1,164 @@
+### CREATE UPLOADER
+POST http://localhost:3000/uploaders/signup
+Content-Type: application/json
+
+{
+  "fullName": "Kinanee Samson",
+  "phoneNumber": "+2348149793913",
+  "email": "kinaneesamsonjohn@gmail.com",
+  "password": "Test1234",
+  "address": 
+    {
+      "street": "No 19 Mike Amadi Street, Rukpokwu, Nigeria",
+      "zip": "500102",
+      "city": "Port Harcourt",
+      "state": "Rivers",
+      "country": "NG"
+    },
+  "officeAddress":
+    {
+      "street": "No 19 Mike Amadi Street, Rukpokwu, Nigeria",
+      "zip": "500102",
+      "city": "Port Harcourt",
+      "state": "Rivers",
+      "country": "NG"
+    },
+  "notary": "Notary"
+}
+
+### LOGIN UPLOADERS
+POST http://localhost:3000/uploaders/login
+Content-Type: application/json
+
+{
+  "email": "kinaneesamsonjohn@gmail.com",
+  "password": "Test1234"
+}
+
+### GET UPLOADERS
+GET http://localhost:3000/uploaders/
+
+### CREATE RETRIEVERS
+POST http://localhost:3000/retrievers/signup
+Content-Type: application/json
+
+{
+  "fullName": "Kinanee Samson",
+  "phoneNumber": "+2348149793913",
+  "email": "kinaneesamsonjohn@gmail.com",
+  "password": "Test1234",
+  "address":
+  {
+    "street": "No 19 Mike Amadi Street, Rukpokwu, Nigeria",
+    "zip": "500102",
+    "city": "Port Harcourt",
+    "state": "Rivers",
+    "country": "NG"
+  }
+}
+
+### LOGIN RETRIVER
+POST http://localhost:3000/retrievers/login
+Content-Type: application/json
+
+{
+  "phoneNumber": "+2348149793913",
+  "password": "Test1234"
+}
+
+### GET ALL RETREIVERS
+GET http://localhost:3000/retrievers
+
+ 
+### Admin Login
+GET http://localhost:3000/
+
+###
+POST http://localhost:3000/admin/signup/
+Content-Type: application/json
+
+{
+  "fullName": "kinanee Samson",
+  "username": "kalashin",
+  "password": "Test1234",
+  "email": "kinaneesamsonjohn@gmail.com"
+}
+
+### LOGIN
+POST http://localhost:3000/admin/login/
+Content-Type: application/json
+
+{
+  "username": "kalashin",
+  "password": "Test1234"
+}
+
+### GET
+GET http://localhost:3000/admin/token/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpbmFuZWVzYW1zb25qb2huQGdtYWlsLmNvbSIsIl9pZCI6IjYyZDA2MTE4NzcyNjM3MWQ2ZWQ1ZDJmZiIsImZ1bGxOYW1lIjoia2luYW5lZSBTYW1zb24iLCJ1c2VybmFtZSI6ImthbGFzaGluIiwiaWF0IjoxNjU3ODI0MDczLCJleHAiOjE2NTg0Mjg4NzN9._4FGfzERwKt_PSfs_ZSZUPglntZ2stANMroDosh2odg
+
+###
+POST http://localhost:3001/document/
+Content-Type: application/json
+
+{
+  "name": "cloudenoe.pdf",
+  "uploader": "62b5bbaeda453405fd384d8f",
+  "retriever": {
+    "_id": "62dbf5e9c796a7c17df864d4",
+    "fullName": "Kinanee John Samson",
+    "phoneNumber": "+2348149793913",
+    "email": "kinaneesamsonjohn@gmail.com"
+  },
+  "retrieverId": "62dbf5e9c796a7c17df864d4",
+  "key": "key",
+  "url": "url",
+  "pages": 200
+}
+
+###
+GET http://localhost:3000/uploaded-document/62d0684d9f20b9ce0da25113
+
+###
+GET http://localhost:3000/uploaded-document
+
+###
+POST http://localhost:3001/payment
+Content-Type: application/json
+
+{
+  "name": "kinanee samson",
+  "email": "kinaneesamsonjohn@gmail.com",
+  "amount": 3000,
+  "phoneNumber": "string"
+}
+
+###
+GET http://localhost:3001/payment/invoice/verify/3252i8cl2d
+Content-Type: application/json
+
+{
+  "reference": "zj4lg11p9q"
+}
+
+### RESET EMAIL
+GET http://localhost:3000/retrievers/request-password-reset/kinaneesamsonjohn@gmail.com
+
+### VERIFY EMAIL 
+GET http://localhost:3000/retrievers/send-password-verification/kinaneesamsonjohn@gmail.com
+
+### GET Documents
+GET http://localhost:3000/document/
+
+### GET document
+GET http://localhost:3000/document/62e10db8beb0cc846f37e90b
+
+###
+GET http://localhost:3000/document/download-link/62de9bef399ff75619c7c2e0
+
+###
+POST http://localhost:3000/document/search
+Content-Type: application/json
+
+{
+  "email": "kinaneesamsonjohn@gmail.com"
+}
