@@ -36,17 +36,20 @@ export class UploadedDocumentController {
     try {
       console.log(payload);
       const _retriever = await this.retrieverService.getRetrieverByEmail(payload.retrieverId);
+      delete payload.retrieverId;
       console.log(_retriever);
       if (_retriever) {
-        payload['retriever'] = { 
-          fullName: _retriever.fullName,
-          email: _retriever.email,
-          phoneNumber: _retriever.phoneNumber,
-          _id: _retriever._id
-        };
-        payload['retrieverId'] = _retriever._id.toString();
+        const param = Object.assign(payload, {
+          retriever: { 
+            fullName: _retriever.fullName,
+            email: _retriever.email,
+            phoneNumber: _retriever.phoneNumber,
+            _id: _retriever._id
+          },
+          retrieverId: _retriever._id.toString(),
+        })
         const [qrcodeDataUrl, doc] =
-          await this.uploadedDocumentService.createDocument(payload);
+          await this.uploadedDocumentService.createDocument(param);
         const html = generateQRCodeTemplate({
           name: doc.retriever.fullName,
           src: qrcodeDataUrl,
