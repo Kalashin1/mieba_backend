@@ -34,7 +34,7 @@ export class UploadedDocumentController {
     @Body() payload: Doc,
   ): Promise<ReturnType<UploadedDocumentType>> {
     try {
-      console.log(payload)
+      console.log(payload);
       const _retriever = await this.retrieverService.getRetrieverByEmail(payload.retrieverId);
       console.log(_retriever);
       if (_retriever) {
