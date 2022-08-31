@@ -76,6 +76,16 @@ export class UploadedDocument {
   @Prop()
   notarizationTransactionReference: string
   
+  @Prop()
+  location: string
+
+  @Prop()
+  latitude: number
+
+  @Prop()
+  longitude: number
+
+  
 }
 
 export const UploadedDocumentSchema = SchemaFactory.createForClass(UploadedDocument);

@@ -16,6 +16,9 @@ export interface Doc {
   };
   src: string;
   pages: number;
+  location: string;
+  latitude: number;
+  longitude: number;
   key: string;
   updateAt?: string;
   size: string;
