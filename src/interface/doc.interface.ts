@@ -16,7 +16,13 @@ export interface Doc {
   };
   src: string;
   pages: number;
-  location: string;
+  location: {
+    city: string;
+    country: string;
+    ip: string;
+    loc: string;
+    region: string
+  };
   latitude: number;
   longitude: number;
   key: string;

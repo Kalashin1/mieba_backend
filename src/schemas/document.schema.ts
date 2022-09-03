@@ -76,8 +76,17 @@ export class UploadedDocument {
   @Prop()
   notarizationTransactionReference: string
   
-  @Prop()
-  location: string
+  @Prop({
+    type: Object,
+    required: [true, "Location is required!"]
+  })
+  location: {
+    city: string;
+    country: string;
+    ip: string;
+    loc: string;
+    region: string
+  }
 
   @Prop()
   latitude: number
