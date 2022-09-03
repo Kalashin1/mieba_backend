@@ -19,14 +19,14 @@ export class UploadedDocument {
     private uploadedDocumentModel: Model<UploadedDocumentType>,
   ) {}
 
-  async createDocument(payload: Partial<Doc>): Promise<[string, UploadedDocumentType]> {
+  async createDocument(payload: Partial<Doc>): Promise<[string, Doc]> {
     const doc = await this.uploadedDocumentModel.create(payload);
     const token = await generateJWT({ _id: doc._id.toString() });
     await doc.updateOne({ token });
     const url = `https://meiba-frontend.vercel.app/verify/document/${token}`;
     const dataUrl: string = await QRCode.toDataURL(url);
     // console.log(dataUrl);
-    return [dataUrl, doc as UploadedDocumentType];
+    return [dataUrl, doc as Doc];
   }
 
   async getDocument(id: string): Promise<UploadedDocumentType> {

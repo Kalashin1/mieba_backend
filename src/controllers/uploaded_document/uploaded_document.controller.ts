@@ -14,7 +14,7 @@ import { UploadedDocumentType } from 'src/schemas/document.schema';
 import { Doc } from 'src/interface/doc.interface';
 import { Email as EmailService } from 'src/providers/email';
 import { getDownLoadUrlData, ReturnType, searchPayload } from 'src/interface/types';
-import { generateDownloadLinkTemplate, generateQRCodeTemplate } from 'src/helpers/email-templates';
+import { generateDownloadLinkTemplate } from 'src/helpers/email-templates';
 import { Payment } from 'src/providers/payment';
 import { HttpService } from '@nestjs/axios';
 import { Retrievers } from 'src/providers/retrievers';
@@ -32,7 +32,7 @@ export class UploadedDocumentController {
   @Post()
   async createDocument(
     @Body() payload: Doc,
-  ): Promise<ReturnType<UploadedDocumentType>> {
+  ): Promise<ReturnType<Doc>> {
     try {
       console.log(payload);
       const _retriever = await this.retrieverService.getRetrieverByEmail(payload.retrieverId);
@@ -48,18 +48,8 @@ export class UploadedDocumentController {
           },
           retrieverId: _retriever._id.toString(),
         })
-        const [qrcodeDataUrl, doc] =
+        const [_, doc] =
           await this.uploadedDocumentService.createDocument(param);
-        const html = generateQRCodeTemplate({
-          name: doc.retriever.fullName,
-          src: qrcodeDataUrl,
-        });
-        await this.emailService.sendMessage({
-          to: doc.retriever.email,
-          from: 'noreply@trixswap.com',
-          subject: 'Your QR codefor your document',
-          html,
-        });
         return {
           data: doc,
           status: 'success',
